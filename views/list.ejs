@@ -1,34 +1,34 @@
-<%- include("header")  -%> 
+<%- include("header") -%>
 
-<body>
-    <div class="box" id="heading">
-        <h1 >
-            <%= listTitle %>
-        </h1>
+    <body>
+        <div class="box" id="heading">
+            <h1>
+                <%= listTitle %>
+            </h1>
 
-    </div>
+        </div>
 
-    <div class="box">
-       
-            <% newListItems.forEach((item)=>{ %>
+        <div class="box">
+
+            <% newListItems && newListItems.forEach((item)=>{ %>
                 <div class="item">
-                    <input type="checkbox">
+                    <input type="checkbox" onchange="window.location = '/delete/<%=item._id%>?list=<%=listTitle%>'">
                     <p>
-                        <%= item%>
+                        <%= item.name%>
                     </p>
+                    <!-- <a href="/delete/<%=item._id%>">DELETE</a> -->
                 </div>
 
                 <% }) %>
-       
 
-        <form class="item" action="" method="post" action="/">
-            <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
-            <button type="submit" name="button" value=<%= listTitle %> >+</button>
+                    <input type="hidden" name="listName" valur="<%= listTitle %> "></input>
+                    <form class="item" action="" method="post" action="/<%=listTitle%> ">
+                        <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+                        <button type="submit" name="button" value=<%=listTitle %> >+</button>
 
-        </form>
-    </div>
+                    </form>
+        </div>
 
-</body>
+    </body>
 
-<%- include("footer") -%> 
-
+    <%- include("footer") -%>
